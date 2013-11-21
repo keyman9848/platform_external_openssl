@@ -23,6 +23,10 @@ LOCAL_CFLAGS += \
 # Intentionally excluded http://b/7079965
 LOCAL_CFLAGS := $(filter-out -DZLIB, $(LOCAL_CFLAGS))
 
+ifneq ($(strip $(BUILD_HOST_64bit)),)
+LOCAL_CFLAGS += -DSIXTY_FOUR_BIT_LONG
+endif
+
 # Debug
 # LOCAL_CFLAGS += -DCIPHER_DEBUG
 

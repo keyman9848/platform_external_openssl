@@ -617,6 +617,7 @@ x86_64_c_flags := \
   -DSHA1_ASM \
   -DSHA256_ASM \
   -DSHA512_ASM \
+  -DSIXTY_FOUR_BIT_LONG \
 
 x86_64_src_files := \
   crypto/aes/asm/aes-x86_64.S \
@@ -675,6 +676,10 @@ ifeq ($(HOST_OS)-$(HOST_ARCH),linux-x86)
 host_arch := x86
 else
 host_arch := unknown_arch
+endif
+
+ifneq ($(strip $(BUILD_HOST_64bit)),)
+host_arch := x86_64
 endif
 
 host_c_flags    := $(common_c_flags) $($(host_arch)_c_flags) $(local_c_flags)
